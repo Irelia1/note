@@ -1,5 +1,7 @@
  https://zhuanlan.zhihu.com/p/135183491
 
+
+
 可以看到，这里先使用的gitee仓库拉取更新成功，但是后面使用的github拉取更新显示失败。由于这是两个不同的仓库，无论谁后被pull更新，都会失败。
 失败原因：refusing to merge unrelated histories（拒绝合并两段不相关的历史）
 由此，测试push也必然失败。
@@ -11,12 +13,43 @@
 git pull github master --allow-unrelated-histories
 ![image-20220708205153624](git.assets/image-20220708205153624.png)
 
+### git代理
+
 git config --global http.proxy socks5 127.0.0.1:1080
 git config --global https.proxy socks5 127.0.0.1:1080
 
 git config --global http.proxy 127.0.0.1:1080
 git config --global https.proxy 127.0.0.1:1080
 1080->7890
+
+### OpenSSL SSL_read: 
+
+Connection was reset, errno 10054
+问题原因
+首先出现这个问题，导致不能正常上传文件到github是很烦心的，网上找了下遇到类似情况的大家的处理方案，有的说是由于网络不稳定造成的，个人觉得有这方面的原因，因为github提交的时候这个错误不是一定会出来的，为了稳妥起见还是把ssl验证关了方便些。
+
+git config --global http.sslVerify "false"
+
+### ! [rejected]        master -> master (fetch first)
+
+正确的解决方法就是将你的仓库和你的gitee合并了，用填充的方法，即：
+
+git pull --rebase origin master
+
+输入上述命令，其中origin代表你的仓库uri，后面的master表示将当前的提交到本地仓库的内容和远程仓库合并；
+再输入如下命令，即可将本地仓库推送到远程仓库：
+
+git push origin master
+
+### fatal: refusing to merge unrelated histories
+
+解决办法是：
+在git pull和git push命令中添加–allow-unrelated-histories
+让git允许提交不关联的历史代码。
+
+git pull origin master --allow-unrelated-histories
+
+git push origin master --allow-unrelated-histories
 
 一、pull操作
 1、将远程指定分支 拉取到 本地指定分支上：
