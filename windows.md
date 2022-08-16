@@ -1,3 +1,5 @@
+https://www.likecs.com/show-204363826.html
+
 ### powershell
 
 profile主要用于个性化常用的函数、别名等等。每次加载powershell的时候，都会执行profile中的内容。
@@ -105,3 +107,4 @@ $students | % { $_ | Add-Member -NotePropertyMembers @{ 'Sum' = ($_.Maths + $_.E
 
 1. 新建、修改、删除系统环境变量需要管理员权限，请使用管理员权限运行 PowerShell；
 2. 新建、修改、删除环境变量在系统层面会立即生效，但在该 PowerShell 中并不，需要重启 PowerShell 才能在 PowerShell 中看到改变。
+
