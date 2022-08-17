@@ -16,3 +16,18 @@ Block Design的方式，适用于快速构建比较复杂的设计，例如包�
 
 驱动安装
 
+![image-20220817221632926](pcie.assets/image-20220817221632926.png)
+
+![image-20220817221728659](pcie.assets/image-20220817221728659.png)
+
+驱动功能测试
+
+xdma_rw.exe  h2c_0 write 0x00000000 -b -f datafile4K.bin -l 4096
+
+xdma_rw.exe  c2h_0 read 0x00000000 -b -f datafile4K_recv.bin -l 4096
+
+![image-20220817222737499](pcie.assets/image-20220817222737499.png)
+
+![image-20220817222747720](pcie.assets/image-20220817222747720.png)
+
+写入的数据与读出的数据一致，xdma工作正常。
