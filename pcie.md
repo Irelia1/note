@@ -31,3 +31,16 @@ xdma_rw.exe  c2h_0 read 0x00000000 -b -f datafile4K_recv.bin -l 4096
 ![image-20220817222747720](pcie.assets/image-20220817222747720.png)
 
 写入的数据与读出的数据一致，xdma工作正常。
+
+### win10下xdma速度测试
+
+如果在头文件中声明变量，然后在不同的源文件中都调用该头文件，会导致编译器报错，说变量被重复定义，（即使写了#ifndef xxxxx也不行）。
+解决的方法是在对应的.c文件中声明该变量，在头文件中extern该变量。
+在example.c中
+int a = 0;
+在example.h中
+extern int a;
+
+Qt调用头文件setupapi.h的函数SetupDiGetClassDevs()编译出错，关联了Windows API调用头文件#include <windows.h>和#include <setupapi.h>，但是编译时仍然出错。后来在一个群里，终于找到了解决方案，出现这个错误的原因是因为没有关联系统库，所以解决办法是关联setupapi的系统库就行。即seupAPI.Lib
+
+![image-20220818163045062](pcie.assets/image-20220818163045062.png)
