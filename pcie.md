@@ -44,3 +44,16 @@ extern int a;
 Qt调用头文件setupapi.h的函数SetupDiGetClassDevs()编译出错，关联了Windows API调用头文件#include <windows.h>和#include <setupapi.h>，但是编译时仍然出错。后来在一个群里，终于找到了解决方案，出现这个错误的原因是因为没有关联系统库，所以解决办法是关联setupapi的系统库就行。即seupAPI.Lib
 
 ![image-20220818163045062](pcie.assets/image-20220818163045062.png)
+
+Qt5工程在Qt6上运行，报错 'QtWidget/QAction'文件找不到
+Qt6上对此类已做了优化，变成
+
+#include <QtWidgets>
+
+BAR和DDR的地址空间读写，需要注意xdma的ip配置中bar的地址映射关系，即xdma的axi的slave（BRAM，DDR）和axi_lite的slave（reg，BRAM，gpio，uixdmairq）在fpga上的xdmaIP中用的地址和上位机的使用不同设备（h2c0，user等）发送的地址需要对应起来，表现为上位机使用user发送0x1 0000地址的数据在xdma的axi-lite的地址为0x44a1 0000（该地址为ip提前配置好的），默认情况下，需要设置uixdmairq中断控制单元的地址和XDMA里面设置的用户BAR地址空间一致。
+
+![image-20220819220451634](pcie.assets/image-20220819220451634.png)
+
+![image-20220819215450464](pcie.assets/image-20220819215450464.png)
+
+xdma的中断传输，经过中断方式测试，发目前使用Legacy和MSI已经够用，而且相对稳定，上位机驱动通过访问用户bar地址空间和MLK编写的Uixdmairq ip-core一起管理接收的中断。
