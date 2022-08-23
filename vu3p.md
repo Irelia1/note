@@ -2,9 +2,16 @@ ddrA-test测试工程：set_property PACKAGE_PIN H22 [get_ports {c0_ddr4_dm_dbi_
 
 ![image-20220812223323892](vu3p.assets/image-20220812223323892.png)
 
+DDR测试
+
+例程A测试通过，出现invalidCore现象，需要在对给mig的复位信号取反，因为没法按sw1拨号按键。
+
+![image-20220820211831419](vu3p.assets/image-20220820211831419.png)
+
 ### pcie
 
 驱动安装
 
 ![image-20220817111705913](vu3p.assets/image-20220817111705913.png)
 
+![image-20220824000729203](vu3p.assets/image-20220824000729203.png)
