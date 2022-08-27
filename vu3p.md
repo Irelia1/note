@@ -15,3 +15,5 @@ DDR测试
 ![image-20220817111705913](vu3p.assets/image-20220817111705913.png)
 
 ![image-20220824000729203](vu3p.assets/image-20220824000729203.png)
+
+经过在linux下的xdma测试，对vu3p烧写bit文件和itx文件，然后reboot，之后load_device，便可用ls /dev/xdma*查看加载好的xdma设备。当添加flash设备并固化msc文件时，断电重启会发现之前添加的flash设备丢失了，且无法成功加载设备，原因不明。是因为vivado在打开工程的时候没打开所烧写或固化程序对应的工程，或者是因为直接从首页开启了硬件管理面板，导致面板加载不到程序。
