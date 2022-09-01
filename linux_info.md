@@ -2,9 +2,19 @@
 
 https://www.zhihu.com/question/451255512/answer/1829673241
 
+whereis -b 
+
+history
+
+mans0
+
 zip file
 
 unzip file
+
+压缩命令: 命令格式:tar -zcvf 压缩文件名.tar.gz 被压缩文件名 可先切换到当前目录下。压缩文件名和被压缩文件名都可加入路径...
+
+解压缩命令: 命令格式:tar -zxvf 压缩文件名.tar.gz 解压缩后的文件只能放在当前的目录。
 
 我们经常见到shell脚本中使用的$0,$1,$2，分别的意思就是：
 
